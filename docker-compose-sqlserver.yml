@@ -1,0 +1,30 @@
+version: '3.9'
+
+networks:
+  localdev:
+    name: localdev
+    external: true
+
+volumes:
+  my-datavolume:
+       
+services:
+  
+  sql-server:
+    image: mcr.microsoft.com/mssql/server:2019-CU10-ubuntu-20.04
+    restart: on-failure
+    container_name: sql-server
+    expose:
+      - 1433
+    environment:
+      SA_PASSWORD: "P@ssw0rd111"
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      
+    ports: 
+      - "1433:1433"
+    volumes:
+      - mssql-server-linux-data:/var/opt/mssql/data
+
+    networks: 
+      - localdev
