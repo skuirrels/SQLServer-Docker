@@ -4,10 +4,7 @@ networks:
   localdev:
     name: localdev
     external: true
-
-volumes:
-  my-datavolume:
-       
+     
 services:
   
   sql-server:
